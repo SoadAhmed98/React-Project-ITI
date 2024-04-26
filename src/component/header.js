@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
 function Header(props) {
-    
+    const favouriteProducts = useSelector((state) => state.favourite.productItems);
     const location=useLocation();
     // console.log(location.pathname); 
     useEffect(() => {
@@ -28,8 +29,8 @@ function Header(props) {
         return( 
             <div className="header__cart">
                 <ul>
-                    <li><a href="#"><i className="fa fa-heart"></i> <span>1</span></a></li>
-                    <li><a href="#"><i className="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                    <li><Link to="/favourites"><i className="fa fa-heart"></i> <span>{favouriteProducts.length}</span></Link></li>
+                    <li><Link to="/cart"><i className="fa fa-shopping-bag"></i> <span>3</span></Link></li>
                 </ul>
                 <div className="header__cart__price">item: <span>$150.00</span></div>
             </div>

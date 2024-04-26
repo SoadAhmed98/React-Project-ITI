@@ -1976,7 +1976,18 @@ a{
 	font-weight: 700;
 	width: 110px;
 }
-
+.shoping__cart__table table tbody tr td.shoping__cart__brand {
+	font-size: 18px;
+	color: #1c1c1c;
+	font-weight: 700;
+	width: 110px;
+}
+.shoping__cart__table table tbody tr td.shoping__cart__category {
+	font-size: 18px;
+	color: #1c1c1c;
+	font-weight: 700;
+	width: 110px;
+}
 .shoping__cart__table table tbody tr td.shoping__cart__item__close {
 	text-align: right;
 }
@@ -1990,7 +2001,9 @@ a{
 .shoping__cart__table table tbody tr td.shoping__cart__quantity {
 	width: 225px;
 }
-
+.shoping__cart__table table tbody tr td.shoping__cart__brand {
+	width: 225px;
+}
 .shoping__cart__table table tbody tr td.shoping__cart__quantity .pro-qty {
 	width: 120px;
 	height: 40px;

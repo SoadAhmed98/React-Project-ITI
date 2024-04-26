@@ -3,6 +3,7 @@ import Product_card from './product_card';
 import axios from 'axios';
 import Pagination from 'react-bootstrap/Pagination';
 import ReactPaginate from 'react-paginate';
+import { useDispatch, useSelector } from 'react-redux';
 function Main_content(props) {
 
     const [products, setProducts] = useState([]);
@@ -25,7 +26,7 @@ function Main_content(props) {
             setPagecount(Math.ceil(total / limit));
             setProducts(response.data.products);
 
-            // console.log(response.data.total);
+            console.log(response.data.products);
         } catch (error) {
             console.error("Error fetching products:", error);
         }
@@ -80,10 +81,6 @@ function Main_content(props) {
             console.error("Error fetching searched products:", error);
         }
     };
-    useEffect(() => {
-        fetchProducts();
-        fetchCategories();
-    }, []); 
 
     const handleChange = async (e) => {
         const selectedCategory = e.target.innerText;
@@ -123,6 +120,13 @@ function Main_content(props) {
     let currentPage = data.selected ;
     await  fetchProductsUsingPagination(currentPage);
   }
+
+
+  useEffect(() => {
+    fetchProducts();
+    fetchCategories();
+}, []); 
+
     return (
         <>
          

@@ -23,7 +23,7 @@ function ProductDetails() {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`https://dummyjson.com/products/${id}`);
-        console.log(response.data);
+        // console.log(response.data);
         setLargeImage(response.data.thumbnail);
         setProduct(response.data);
         setLoading(false); // Set loading to false after data is fetched
