@@ -1,40 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { CalculateTotalAction, DeleteFromCartAction, UpdateCartItemQuantity, UpdateCartItemQuantityaction } from '../Store/Actions/cartAction';
+import { DeleteFromCartAction, UpdateCartItemQuantityaction } from '../Store/Actions/cartAction';
 
 function CartProduct(props) {
-    // console.log(TotalPrice);
     const productItems = useSelector(state => state.cart.productItems);
     const dispatch = useDispatch();
-    // Find the cart item with matching productId
-    const cartItem = productItems.find(item => item.productId == props.id);
 
+    // Find the cart item with matching productId
+    const cartItem = productItems.find(item => item.productId === props.id);
+    // console.log(cartItem);
     const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
-    const [totalPrice, setTotalPrice] = useState(0);
-    const removeFromcart= (productId)=>{
-        dispatch(DeleteFromCartAction(productId))
-       }
-       
-       const handleQuantityChange = (value) => {
+    const [totalPrice, setTotalPrice] = useState(quantity * props.price);
+
+    const removeFromcart = (productId) => {
+        dispatch(DeleteFromCartAction(productId));
+    };
+
+    const handleQuantityChange = (value) => {
         const newQuantity = quantity + value;
         
         if (newQuantity >= 1 && newQuantity <= props.stock) {
-          setQuantity(newQuantity);
+            setQuantity(newQuantity);
+            setTotalPrice(newQuantity * props.price);
+
+            // Dispatch an action to update the quantity of the item in the cart
+            if (cartItem) {
+                dispatch(UpdateCartItemQuantityaction({ productId: props.id, quantity: newQuantity }));
+            }
         } else if (newQuantity < 1) {
-          setQuantity(1);
+            setQuantity(1);
         } else if (newQuantity > props.stock) {
-          setQuantity(props.stock);
+            setQuantity(props.stock);
         }
-      };
+    };
   
     useEffect(() => {
-        const newTotalPrice = quantity * props.price;
-       setTotalPrice(newTotalPrice);
-       if (cartItem) {
-        // Dispatch an action to update the quantity of the item in the cart
-        dispatch(UpdateCartItemQuantityaction({cartItem.productId,quantity}));
-    }
+        setTotalPrice(quantity * props.price);
     }, [quantity, props.price]);
     return (
         <>

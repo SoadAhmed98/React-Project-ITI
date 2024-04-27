@@ -4,6 +4,9 @@ import { Link, useLocation } from 'react-router-dom';
 
 function Header(props) {
     const favouriteProducts = useSelector((state) => state.favourite.productItems);
+    const cartProducts = useSelector((state) => state.cart.productItems);
+    const TotalPrice = useSelector((state) => state.cart.totalPrice);
+    // console.log(TotalPrice);
     const location=useLocation();
     // console.log(location.pathname); 
     useEffect(() => {
@@ -30,9 +33,9 @@ function Header(props) {
             <div className="header__cart">
                 <ul>
                     <li><Link to="/favourites"><i className="fa fa-heart"></i> <span>{favouriteProducts.length}</span></Link></li>
-                    <li><Link to="/cart"><i className="fa fa-shopping-bag"></i> <span>3</span></Link></li>
+                    <li><Link to="/cart"><i className="fa fa-shopping-bag"></i> <span>{cartProducts.length}</span></Link></li>
                 </ul>
-                <div className="header__cart__price">item: <span>$150.00</span></div>
+                {/* <div className="header__cart__price">item: <span>${TotalPrice}</span></div> */}
             </div>
         )
         }

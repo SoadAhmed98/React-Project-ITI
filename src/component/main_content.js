@@ -186,7 +186,7 @@ function Main_content(props) {
                 <div className="row featured__filter">
                     {
                     products.map((product,index)=>{
-                        return  <Product_card key={index} image={product.images[0]} product_name={product.title} price={product.price}  id={product.id}/>
+                        return  <Product_card key={index} image={product.images[0]} product_name={product.title} price={product.price} quantity={1}  id={product.id}/>
                     })
                     }
                     

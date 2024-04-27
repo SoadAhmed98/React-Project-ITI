@@ -2,9 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Product_card from '../component/product_card';
 import Header from '../component/header';
+import { useDispatch, useSelector } from 'react-redux';
+import { AddToFavouriteaction, DeleteFromFavouriteaction } from '../Store/Actions/favouriteAction';
+import { AddToCartAction, DeleteFromCartAction } from '../Store/Actions/cartAction';
 
 function ProductDetails() {
   const [loading, setLoading] = useState(true);
@@ -16,8 +19,8 @@ function ProductDetails() {
   const { id } = useParams();
   
   useEffect(() => {
-    var proQty = document.querySelector('.pro-qty');
-   console.log(proQty);
+  //   var proQty = document.querySelector('.pro-qty');
+  // //  console.log(proQty);
    
 
     const fetchProduct = async () => {
@@ -148,6 +151,44 @@ const checkStock=()=>{
     
     }
 }
+const navigate=useNavigate ();
+const [user, setUser] = useState([]);
+
+const auth=()=>{
+    const user = JSON.parse(localStorage.getItem('user'));
+    // console.log(user);
+    if (user == null) {
+        navigate('/login')
+       }
+}
+//favourite
+  const favouriteProducts = useSelector((state) => state.favourite.productItems);
+
+  const dispatch = useDispatch()
+  const AddToFavourite = (productId)=>{
+    dispatch(AddToFavouriteaction(productId))
+  }
+  const addToFav = ()=>{
+  auth(); 
+  AddToFavourite(product.id); 
+  }
+  const removeFromFav= (productId)=>{
+  dispatch(DeleteFromFavouriteaction(productId))
+  }
+  //cart
+  const cartProducts = useSelector((state) => state.cart.productItems);
+  const cartProductIds = cartProducts.map((item) => item.productId);
+
+  const AddToCart = ({productId,price,quantity})=>{
+    dispatch(AddToCartAction({productId,price,quantity}))
+  }
+    const addtocart = ()=>{
+    auth(); 
+    AddToCart({ productId: product.id, quantity: quantity, price: product.price}); 
+    }
+    const removeFromCart= (productId)=>{
+    dispatch(DeleteFromCartAction(productId))
+    }
   return (
     <>
     <Header/>
@@ -190,12 +231,27 @@ const checkStock=()=>{
                   </div>
                 </div>
               </div>
-              <a href="#" className="primary-btn">
-                ADD TO CART
-              </a>
-              <a href="#" className="heart-icon">
-                <span className="icon_heart_alt"></span>
-              </a>
+             
+              {cartProductIds.includes(product.id) ? (
+                                    <div onClick={() => removeFromCart(product.id)} style={{cursor:"pointer",color:"red"}} className="primary-btn">
+                                      Remove From Cart
+                                    </div>
+                                  ) : (
+                                   
+                                    <div  onClick={addtocart} style={{cursor:"pointer"}} className="primary-btn">
+                                      Add To Cart
+                                    </div>
+                                )}
+                                
+              {favouriteProducts.includes(product.id) ? (
+                    <div style={{cursor:"pointer",color:"red"}} onClick={() => removeFromFav(product.id)}  className="heart-icon">
+                      <span className="icon_heart_alt"></span>
+                    </div>
+                  ) : (
+                  <div style={{cursor:"pointer"}} onClick={addToFav} className="heart-icon">
+                    <span className="icon_heart_alt"></span>
+                  </div>
+                )}
               <ul>
                 <li>
                   <b>Availability</b> {checkStock()}
