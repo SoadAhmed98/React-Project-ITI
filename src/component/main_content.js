@@ -134,7 +134,7 @@ function Main_content(props) {
             <div className="container">
                 <div className='row'>
                     <div className="hero__item set-bg" data-setbg={`${process.env.PUBLIC_URL}/assets/img/hero/banner.jpg`} style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/assets/img/hero/banner.jpg)` }}>
-                        <div className="hero__text">
+                        <div className="hero__text" style={{padding:"60px"}}>
                             <span>SALES ON</span>
                             <h2>Products <br />100% Original</h2>
                             <p>Free Pickup and Delivery Available</p>

@@ -6,6 +6,7 @@ import Register from './pages/register';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Favourite from './pages/favourite';
 import Cart from './pages/cart';
+import NotFound from './pages/notFound';
 function App() {
  
   return (
@@ -18,6 +19,7 @@ function App() {
              <Route exact path="/cart"  element={<Cart/>}></Route>
              <Route  path="/productDetails/:id" element={<Product_details/>}></Route>
              <Route exact path="/"  element={<Home/>}></Route>
+             <Route  path="*"  element={<NotFound/>}></Route>
         </Routes>
      </Router>
     </>
