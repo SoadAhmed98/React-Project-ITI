@@ -343,7 +343,7 @@ const auth=()=>{
             <div className="row">
                     {
                         relatedProducts.map((product)=>{
-                            return  <Product_card image={product.images[0]} product_name={product.title} price={product.price}  id={product.id}/>
+                            return  <Product_card key={product.id} image={product.images[0]} product_name={product.title} price={product.price} quantity={1}  id={product.id}/>
                         })
                       }
                 
