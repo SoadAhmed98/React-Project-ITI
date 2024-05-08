@@ -3633,3 +3633,11 @@ a{
 		font-size: 24px;
 	}
 }
+@media only screen and (max-width: 1010px){
+	.hero__text{
+		display: none;
+	}
+	.header__cart{
+		margin-top: 20px;
+	}
+}

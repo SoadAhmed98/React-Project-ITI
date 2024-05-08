@@ -85,7 +85,7 @@ function Register(props) {
     const submitData = (e) => {
         e.preventDefault();
         localStorage.setItem('user', JSON.stringify(userData));
-        navigate('/');
+        navigate('/login');
         console.log("Registered successfully")
     }
     return (
@@ -103,34 +103,34 @@ function Register(props) {
                         <form onSubmit={(e) => submitData(e)}>
                             <div className='login__form'>
                                 <div className="row">
-                                   <label for="inputName" class="col-md-4 col-form-label fw-bold label__form">Name:</label>
+                                   <label htmlFor="inputName" className="col-md-4 col-form-label fw-bold label__form">Name:</label>
                                     <div className="col-md-8 ">
                                         <input type="text" id="inputName" name='name' placeholder="Your name" value={userData.name}  onChange={(e) => changeData(e)}/>
                                         <p style={{color:"#D20062"}}>{errors.nameError}</p>
                                     </div>
                                 </div>
                                 <div className='row'>
-                                    <label for="inputEmail" class="col-md-4 col-form-label fw-bold label__form">Email:</label>
+                                    <label htmlFor="inputEmail" className="col-md-4 col-form-label fw-bold label__form">Email:</label>
                                     <div className="col-md-8 ">
                                         <input type="text" id="inputEmail" name='email' placeholder="Your Email" value={userData.email}  onChange={(e) => changeData(e)}/>
                                         <p style={{color:"#D20062"}}>{errors.emailError}</p>
                                     </div>
                                 </div>
                                 <div className='row'>
-                                    <label for="inputPass" class="col-md-4 col-form-label fw-bold label__form">Password:</label>
+                                    <label htmlFor="inputPass" className="col-md-4 col-form-label fw-bold label__form">Password:</label>
                                     <div className="col-md-8 ">
                                         <input type="password" id="inputPass" name='pass' placeholder="Your Passwod" value={userData.pass}  onChange={(e) => changeData(e)}/>
                                         <p style={{color:"#D20062"}}>{errors.passError}</p>
                                     </div>
                                 </div>
                                 <div className='row'>
-                                    <label for="inputConfpass" class="col-md-4 col-form-label fw-bold label__form">Confirm Password:</label>
+                                    <label htmlFor="inputConfpass" className="col-md-4 col-form-label fw-bold label__form">Confirm Password:</label>
                                     <div className="col-md-8 ">
                                         <input type="password" id="inputConfpass" name='confpass' placeholder="Password Confirmation" value={userData.confpass}  onChange={(e) => changeData(e)}/>
                                         <p style={{color:"#D20062"}}>{errors.confpassError}</p>
                                      </div>
                                 </div>
-                                <button type="submit" class="site-btn"
+                                <button type="submit" className="site-btn"
                                 disabled={
 									!!errors.nameError ||
 									!!errors.emailError ||

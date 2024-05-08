@@ -64,7 +64,10 @@ function Header(props) {
                <div className="humberger__menu__overlay"></div>
                 <div className="humberger__menu__wrapper">
                     <div className="humberger__menu__logo">
-                        <Link to="/"><img src={process.env.PUBLIC_URL +'/assets/img/logo.png'} alt=""/></Link>
+                        <Link to="/">
+                            <img src={process.env.PUBLIC_URL +'/assets/img/logo.png'} alt=""/>
+                       
+                        </Link>
                     </div>
                     <div className="humberger__menu__cart">
                         {showHeaderCart()}
@@ -110,8 +113,12 @@ function Header(props) {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-3">
-                            <div className="header__logo">
-                                <Link to="/"><img src={process.env.PUBLIC_URL +'/assets/img/logo.png'} alt=""/></Link>
+                            <div className="header__logo header__menu">
+                                <Link to="/">
+                                    <img src={process.env.PUBLIC_URL +'/assets/img/logo.png'} alt=""/>
+                                   
+                                </Link>
+                              
                             </div>
                         </div>
                         <div className="col-lg-6">

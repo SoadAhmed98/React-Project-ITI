@@ -26,7 +26,7 @@ function Main_content(props) {
             setPagecount(Math.ceil(total / limit));
             setProducts(response.data.products);
 
-            console.log(response.data.products);
+            // console.log(response.data.products);
         } catch (error) {
             console.error("Error fetching products:", error);
         }

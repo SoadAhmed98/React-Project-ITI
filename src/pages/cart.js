@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../component/header';
 import Footer from '../component/footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { CalculateTotalAction, DeleteFromCartAction } from '../Store/Actions/cartAction';
+import { CalculateTotalAction} from '../Store/Actions/cartAction';
 import axios from 'axios';
 import CartProduct from '../component/cartProduct';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 function Cart(props) {
     const cartProducts = useSelector((state) => state.cart.productItems);
     const TotalPrice = useSelector((state) => state.cart.totalPrice);
-
     const dispatch = useDispatch()
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -34,21 +33,27 @@ function Cart(props) {
     fetchProducts();
     }, [cartProducts]);
     
-
-    const deleteFromcart = (productId)=>{
-
-       dispatch(DeleteFromCartAction(productId))
-        
-      }
-      const CalculateTotalPrice = () => {
-        const totalPrice = cartProducts.reduce((accumulator, currentItem) => {
-            const itemTotalPrice = currentItem.quantity * currentItem.price;
-            return accumulator + itemTotalPrice;
+    const CalculateTotalPrice = () => {
+        return cartProducts.reduce((accumulator, currentItem) => {
+          const itemTotalPrice = currentItem.quantity * currentItem.price;
+          return accumulator + itemTotalPrice;
         }, 0);
-        dispatch(CalculateTotalAction(totalPrice))
-        // console.log(TotalPrice);
-        return totalPrice; // Format total price to 2 decimal places
-    };
+      };
+    
+      useEffect(() => {
+        const totalPrice = CalculateTotalPrice();
+        dispatch(CalculateTotalAction(totalPrice));
+      }, [cartProducts, dispatch]);
+  
+    //   const CalculateTotalPrice = () => {
+    //     const totalPrice = cartProducts.reduce((accumulator, currentItem) => {
+    //         const itemTotalPrice = currentItem.quantity * currentItem.price;
+    //         return accumulator + itemTotalPrice;
+    //     }, 0);
+    //     dispatch(CalculateTotalAction(totalPrice))
+    //     // console.log(TotalPrice);
+    //     return totalPrice; // Format total price to 2 decimal places
+    // };
     return (
         <>
             <Header/>
@@ -56,7 +61,7 @@ function Cart(props) {
                 <div className="container">
                 {cartProducts.length == 0 ?
               
-                        <div class="alert alert-light text-center" role="alert">
+                        <div className="alert alert-light text-center" role="alert">
                                 You Don't Add Any Product To Your Cart 
                         </div>
                 :

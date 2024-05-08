@@ -57,12 +57,12 @@ function Product_card(props) {
                             
                             <ul className="featured__item__pic__hover">
                                 {favouriteProducts.includes(props.id) ? (
-                                    <li onClick={() => removeFromFav(props.id)} style={{backgroundColor:"white",borderColor:"white"}}><i className="fa fa-heart" style={{ color: "red"}}></i></li>
+                                    <li onClick={() => removeFromFav(props.id)} style={{backgroundColor:"white",borderColor:"white"}}><i className="fa fa-heart" style={{ color: "#dd2222"}}></i></li>
                                 ) : (
                                     <li onClick={addToFav}><i className="fa fa-heart"></i></li>
                                 )}
                                 {cartProductIds.includes(props.id) ? (
-                                    <li onClick={() => removeFromCart(props.id)} style={{backgroundColor:"white",borderColor:"white"}}><i className="fa fa-shopping-cart" style={{ color: "red"}}></i></li>
+                                    <li onClick={() => removeFromCart(props.id)} style={{backgroundColor:"white",borderColor:"white"}}><i className="fa fa-shopping-cart" style={{ color: "#dd2222"}}></i></li>
                                 ) : (
                                     <li onClick={addtocart}><i className="fa fa-shopping-cart"></i></li>
                                 )}

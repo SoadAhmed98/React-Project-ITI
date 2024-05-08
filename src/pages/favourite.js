@@ -21,11 +21,11 @@ function Favourite(props) {
                 const products = favouriteProducts.map(id =>
                     axios.get(`https://dummyjson.com/products/${id}`)
                 );
-                console.log(products);
+                // console.log(products);
                 const responses = await Promise.all(products);
-                console.log(responses);
+                // console.log(responses);
                 const productsData = responses.map(res => res.data);
-                console.log(productsData);
+                // console.log(productsData);
                 setProducts(productsData);
             } catch (error) {
                 console.error('Error fetching products:', error);
@@ -49,7 +49,7 @@ function Favourite(props) {
                 <div className="container">
                 {favouriteProducts.length == 0 ?
               
-                        <div class="alert alert-light text-center" role="alert">
+                        <div className="alert alert-light text-center" role="alert">
                                 You Don't Add Any Product To Your Favourite List
                         </div>
                 :

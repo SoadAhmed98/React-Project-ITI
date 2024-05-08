@@ -78,8 +78,13 @@ function Login(props) {
 
     const submitData = (e) => {
         e.preventDefault();
-        localStorage.setItem('user', JSON.stringify(userData));
-        navigate('/');
+        const userData = JSON.parse(localStorage.getItem('user'));
+        if(userData == null){
+            navigate('/register');
+        }else{
+            navigate('/');
+        }
+      
         // console.log("Sign in successfully")
     }
     return (
@@ -97,21 +102,21 @@ function Login(props) {
                         <form onSubmit={(e) => submitData(e)}>
                             <div className='login__form'>
                                 <div className='row'>
-                                    <label for="inputEmail" class="col-md-4 col-form-label fw-bold label__form">Email:</label>
+                                    <label htmlFor="inputEmail" className="col-md-4 col-form-label fw-bold label__form">Email:</label>
                                     <div className="col-md-8 ">
                                             <input type="text" id="inputEmail" name='email' placeholder="Your Email" value={userData.email} onChange={(e) => changeData(e)}/>
                                             <p style={{color:"#D20062"}}>{errors.emailError}</p>
                                     </div>
                                 </div>    
                                 <div className="row">
-                                <label for="inputPass" class="col-md-4 col-form-label fw-bold label__form">Password:</label>
+                                <label htmlFor="inputPass" className="col-md-4 col-form-label fw-bold label__form">Password:</label>
                                     <div className="col-md-8 ">
                                         <input type="password" id="inputPass" name="pass" placeholder="Your Password" value={userData.pass}  onChange={(e) => changeData(e)}/>
                                         <p style={{color:"#D20062"}}>{errors.passError}</p>
                                     </div>
                                 </div>
                                
-                                <button type="submit" class="site-btn" 
+                                <button type="submit" className="site-btn" 
                                 disabled={
                                     errors.emailError
                                      || errors.passError 

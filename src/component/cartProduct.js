@@ -41,21 +41,21 @@ function CartProduct(props) {
     return (
         <>
            <tr>
-           <Link to={`/productDetails/${props.id}`}>
-                <td className="shoping__cart__item">
-                    <img src={props.image} style={{width:"100px",height:"120px"}} alt={props.product_name + "image"}/>
-                    <h5>{props.product_name}</h5>
-                </td>
-            </Link>    
+               <td className="shoping__cart__item">
+                    <Link to={`/productDetails/${props.id}`}>
+                            <img src={props.image} style={{width:"100px",height:"120px"}} alt={props.product_name + "image"}/>
+                            <h5>{props.product_name}</h5>
+                    </Link> 
+                </td>   
                 <td className="shoping__cart__price">
                     ${props.price} 
                 </td>
                 <td className="shoping__cart__quantity">
                     <div className="quantity">
                         <div className="pro-qty">
-                        <span class="dec qtybtn"  onClick={() => handleQuantityChange(-1)}>-</span>
-                            <input type="text" value={`${props.vlaue ? props.vlaue :quantity}`}/>
-                            <span class="inc qtybtn"  onClick={() => handleQuantityChange(1)}>+</span>
+                        <span className="dec qtybtn"  onClick={() => handleQuantityChange(-1)}>-</span>
+                            <input type="text" value={`${props.vlaue ? props.vlaue :quantity}`} readOnly/>
+                            <span className="inc qtybtn"  onClick={() => handleQuantityChange(1)}>+</span>
                         </div>
                     </div>
                 </td>

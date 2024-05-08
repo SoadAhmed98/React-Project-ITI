@@ -12,12 +12,14 @@ function FavouriteProduct(props) {
         <>
           
                 <tr>
-                <Link to={`/productDetails/${props.id}`}>
+              
                         <td className="shoping__cart__item">
+                           <Link to={`/productDetails/${props.id}`}>
                             <img src={props.image} style={{width:"100px",height:"120px"}} alt={props.product_name + "image"}/>
                             <h5>{props.product_name} </h5>
+                            </Link>
                         </td>
-                </Link>        
+                       
                         <td className="shoping__cart__price">
                             ${props.price} 
                         </td>

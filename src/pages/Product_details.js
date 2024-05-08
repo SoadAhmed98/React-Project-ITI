@@ -225,15 +225,15 @@ const auth=()=>{
               <div className="product__details__quantity">
                 <div className="quantity">
                   <div className="pro-qty">
-                  <span class="dec qtybtn"  onClick={() => handleQuantityChange(-1)}>-</span>
-                    <input type="text" value={quantity} />
-                    <span class="inc qtybtn"  onClick={() => handleQuantityChange(1)}>+</span>
+                  <span className="dec qtybtn"  onClick={() => handleQuantityChange(-1)}>-</span>
+                    <input type="text" value={quantity} readOnly/>
+                    <span className="inc qtybtn"  onClick={() => handleQuantityChange(1)}>+</span>
                   </div>
                 </div>
               </div>
              
               {cartProductIds.includes(product.id) ? (
-                                    <div onClick={() => removeFromCart(product.id)} style={{cursor:"pointer",color:"red"}} className="primary-btn">
+                                    <div onClick={() => removeFromCart(product.id)} style={{cursor:"pointer",color:"#dd2222"}} className="primary-btn">
                                       Remove From Cart
                                     </div>
                                   ) : (
