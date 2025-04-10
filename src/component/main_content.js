@@ -153,7 +153,7 @@ function Main_content(props) {
                             <li onClick={(e)=>handleChange(e)} style={{cursor:'pointer'}}>All Products</li>
                                 {
                                     categories.map((category,index)=>{
-                                        return (<li key={index} onClick={(e)=>handleChange(e)} style={{cursor:'pointer'}}>{category}</li>)
+                                        return (<li key={index} onClick={(e)=>handleChange(e)} style={{cursor:'pointer'}}>{category.name}</li>)
                                     })
                                 }
                                
